@@ -1,0 +1,104 @@
+{
+	"bridge": {
+		"name": "Homebridge",
+		"username": "CC:22:3D:E3:CE:33",
+		"port": 51826,
+		"pin": "031-45-154"
+	},
+
+	"description": "This is an example configuration file with one fake accessory and one fake platform. You can use this as a template for creating your own configuration file containing devices you actually own.",
+
+	"accessories": [
+
+	],
+	"platforms": [{
+            "platform": "BroadlinkRM",
+            "name": "Broadlink RM",
+            "hideScanFrequencyButton": false,
+            "hideLearnButton": false,
+            "accessories": [{
+                    "name": "Learn",
+                    "type": "learn-code",
+                    "host": "192.168.0.117"
+                },
+                {
+                    "name":"Sacada",
+                    "type":"switch",
+                    "host": "192.168.0.117",
+                    "disableAutomaticOff": false,
+                    "onDuration": 1,
+                    "data": {
+                        "on": "e972260012060606060c06060c060607060b0b0c070606060c0c06060705070506060c0b0706060606070000",
+                        "off": ""
+                    }
+                },
+                {
+                    "name":"TV",
+                    "type":"switch",
+                    "host": "192.168.0.117",
+                    "disableAutomaticOff": false,
+                    "onDuration": 1,
+                    "data": {
+                        "on": "26008c00959214371137133613111411141112121312123813371137141112121411131213111313113713131113131212111411131213381112133810371338123614371237120005fa95921237143613361213131212121311141213351337133613111314121114111312121214351312131113121212131213121336131311381239103812371137133613000d05000000000000000000000000",
+                        "off": ""
+                    }
+                },
+                {
+                    "name":"TV Vol +",
+                    "type":"switch",
+                    "host": "192.168.0.117",
+                    "disableAutomaticOff": false,
+                    "onDuration": 1,
+                    "data": {
+                        "on": "26009000949312391336113713121212141211131311143513371336121214111213131214111236133713361213131113121214111311131212131312371337133512371435130005fb949313371435143513111412111313121212143713351237131212121213121214111237133712371212141114111311131212131212131312371238113811381236130007620b000d050000000000000000",
+                        "off": ""
+                    }
+                },
+                {
+                    "name":"TV Vol -",
+                    "type":"switch",
+                    "host": "192.168.0.117",
+                    "disableAutomaticOff": false,
+                    "onDuration": 1,
+                    "data": {
+                        "on": "260090000b0007c9949312371337123812111412131213111410123815341237131114121213111215111237143612131236121410131311141312121112133712131237123814341336150005fb92941238113811381311131311131311131214351435143711131113131113121312133612391212123615101212141113111411131212371312123812371238123712000d050000000000000000",
+                        "off": ""
+                    }
+                },
+                {
+                    "name":"TV Source",
+                    "type":"switch",
+                    "host": "192.168.0.117",
+                    "disableAutomaticOff": false,
+                    "onDuration": 1,
+                    "data": {
+                        "on": "26009000949311381137133813101313111411121312133612371436131312111312131113121238111314101412121311121312121313121335153515341337133712371236140005fb9492133612381238111312121213131113131236133613381112131212141211141212371212131212131213111313111313121113371435123812361337133612381200033d08000d050000000000000000",
+                        "off": ""
+                    }
+                }
+            ]
+        },
+        {
+            "platform": "IFTTT",
+            "name": "IFTTT",
+            "makerkey": "dmqzQAgVARo-dWhSsJpUYl",
+            "accessories": [{
+              "name": "Accessory 1",
+              "buttons": [
+                {
+                  "caption": "Door Open IFTTT",
+                  "trigger": "front_door_opened",
+                  "stateful": false
+                },
+                {
+                    "caption": "Door Close IFTTT",
+                    "trigger": "front_door_closed",
+                    "stateful": false
+                  }
+              ]
+              }
+            ]
+          }
+    ]
+}
+
