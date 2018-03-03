@@ -1,104 +1,169 @@
 {
-	"bridge": {
-		"name": "Homebridge",
-		"username": "CC:22:3D:E3:CE:33",
-		"port": 51826,
-		"pin": "031-45-154"
-	},
-
-	"description": "This is an example configuration file with one fake accessory and one fake platform. You can use this as a template for creating your own configuration file containing devices you actually own.",
-
-	"accessories": [
-
-	],
-	"platforms": [{
-            "platform": "BroadlinkRM",
-            "name": "Broadlink RM",
-            "hideScanFrequencyButton": false,
-            "hideLearnButton": false,
-            "accessories": [{
-                    "name": "Learn",
-                    "type": "learn-code",
-                    "host": "192.168.0.117"
-                },
-                {
-                    "name":"Sacada",
-                    "type":"switch",
-                    "host": "192.168.0.117",
-                    "disableAutomaticOff": false,
-                    "onDuration": 1,
-                    "data": {
-                        "on": "e972260012060606060c06060c060607060b0b0c070606060c0c06060705070506060c0b0706060606070000",
-                        "off": ""
-                    }
-                },
-                {
-                    "name":"TV",
-                    "type":"switch",
-                    "host": "192.168.0.117",
-                    "disableAutomaticOff": false,
-                    "onDuration": 1,
-                    "data": {
-                        "on": "26008c00959214371137133613111411141112121312123813371137141112121411131213111313113713131113131212111411131213381112133810371338123614371237120005fa95921237143613361213131212121311141213351337133613111314121114111312121214351312131113121212131213121336131311381239103812371137133613000d05000000000000000000000000",
-                        "off": ""
-                    }
-                },
-                {
-                    "name":"TV Vol +",
-                    "type":"switch",
-                    "host": "192.168.0.117",
-                    "disableAutomaticOff": false,
-                    "onDuration": 1,
-                    "data": {
-                        "on": "26009000949312391336113713121212141211131311143513371336121214111213131214111236133713361213131113121214111311131212131312371337133512371435130005fb949313371435143513111412111313121212143713351237131212121213121214111237133712371212141114111311131212131212131312371238113811381236130007620b000d050000000000000000",
-                        "off": ""
-                    }
-                },
-                {
-                    "name":"TV Vol -",
-                    "type":"switch",
-                    "host": "192.168.0.117",
-                    "disableAutomaticOff": false,
-                    "onDuration": 1,
-                    "data": {
-                        "on": "260090000b0007c9949312371337123812111412131213111410123815341237131114121213111215111237143612131236121410131311141312121112133712131237123814341336150005fb92941238113811381311131311131311131214351435143711131113131113121312133612391212123615101212141113111411131212371312123812371238123712000d050000000000000000",
-                        "off": ""
-                    }
-                },
-                {
-                    "name":"TV Source",
-                    "type":"switch",
-                    "host": "192.168.0.117",
-                    "disableAutomaticOff": false,
-                    "onDuration": 1,
-                    "data": {
-                        "on": "26009000949311381137133813101313111411121312133612371436131312111312131113121238111314101412121311121312121313121335153515341337133712371236140005fb9492133612381238111312121213131113131236133613381112131212141211141212371212131212131213111313111313121113371435123812361337133612381200033d08000d050000000000000000",
-                        "off": ""
-                    }
-                }
-            ]
+  "bridge": {
+    "name": "Homebridge",
+    "username": "CC:22:3D:E3:CE:33",
+    "port": 51826,
+    "pin": "031-45-154"
+  },
+  "description": "This is an example configuration file with one fake accessory and one fake platform. You can use this as a template for creating your own configuration file containing devices you actually own.",
+  "accessories": [
+    {
+      "accessory": "Http",
+      "name": "Bruno Light Room Bridge",
+      "switchHandling": "realtime",
+      "http_method": "GET",
+      "on_url": "http://localhost:5555/change?val=1&room=bruno",
+      "off_url": "http://localhost:5555/change?val=0&room=bruno",
+      "status_url": "http://localhost:5555/status?room=bruno",
+      "service": "Light",
+      "sendimmediately": ""
+    },
+    {
+      "accessory": "Http",
+      "name": "Sala Light Room Bridge",
+      "switchHandling": "realtime",
+      "http_method": "GET",
+      "on_url": "http://localhost:5555/change?val=1&room=sala",
+      "off_url": "http://localhost:5555/change?val=0&room=sala",
+      "status_url": "http://localhost:5555/status?room=sala",
+      "service": "Light",
+      "sendimmediately": ""
+    },
+    {
+      "accessory": "SamsungTV",
+      "name": "Living Room TV",
+      "ip": "192.168.1.125",
+      "mac": "7c:64:56:f9:cd:81",
+      "type": "power"
+    },
+    {
+      "accessory": "SamsungTV",
+      "name": "Mute TV",
+      "ip": "192.168.1.125",
+      "mac": "7c:64:56:f9:cd:81",
+      "type": "mute"
+    },
+    {
+      "accessory": "SamsungTV",
+      "name": "Change HDMI",
+      "ip": "192.168.1.125",
+      "mac": "7c:64:56:f9:cd:81",
+      "type": "custom",
+      "command": "KEY_HDMI"
+    },
+    {
+      "accessory": "SamsungTV",
+      "name": "Vol +",
+      "ip": "192.168.1.125",
+      "mac": "7c:64:56:f9:cd:81",
+      "type": "custom",
+      "command": "KEY_VOLUP",
+      "repeat": 5,
+      "delay": 500
+    },
+    {
+      "accessory": "SamsungTV",
+      "name": "Vol -",
+      "ip": "192.168.1.125",
+      "mac": "7c:64:56:f9:cd:81",
+      "type": "custom",
+      "command": "KEY_VOLDOWN",
+      "repeat": 5,
+      "delay": 500
+    },
+    {
+      "accessory": "SamsungTV",
+      "name": "Play",
+      "ip": "192.168.1.125",
+      "mac": "7c:64:56:f9:cd:81",
+      "type": "custom",
+      "command": "KEY_PLAY"
+    },
+    {
+      "accessory": "SamsungTV",
+      "name": "Pause",
+      "ip": "192.168.1.125",
+      "mac": "7c:64:56:f9:cd:81",
+      "type": "custom",
+      "command": "KEY_PAUSE"
+    }
+  ],
+  "platforms": [
+    {
+      "platform": "TplinkSmarthome",
+      "name": "TplinkSmarthome",
+      "devices": [
+        {
+          "host": "192.168.1.122"
+        }
+      ]
+    },
+    {
+      "platform": "BroadlinkRM",
+      "name": "Broadlink RM",
+      "hideScanFrequencyButton": false,
+      "hideLearnButton": false,
+      "accessories": [
+        {
+          "name": "Learn",
+          "type": "learn-code",
+          "host": "192.168.1.117"
         },
         {
-            "platform": "IFTTT",
-            "name": "IFTTT",
-            "makerkey": "dmqzQAgVARo-dWhSsJpUYl",
-            "accessories": [{
-              "name": "Accessory 1",
-              "buttons": [
-                {
-                  "caption": "Door Open IFTTT",
-                  "trigger": "front_door_opened",
-                  "stateful": false
-                },
-                {
-                    "caption": "Door Close IFTTT",
-                    "trigger": "front_door_closed",
-                    "stateful": false
-                  }
-              ]
-              }
-            ]
+          "name": "Ar Condicionado",
+          "type": "air-conditioner",
+          "host": "192.168.1.117",
+"minTemperature": 18,
+"defaultCoolTemperature": 30,
+"defaultCoolTemperature": 18,
+          "data": {
+            "off": "2600ea00090003a064370d290f280d0f1206100d0f27100d0e0e0f280e280e0d0e280f0d0e0e0d2a0e290d0f0d280e2a0c0e0e0d0e290f0c0f0d0f290e0c0e0e0f0d0f0c0e0d0f0d0f0e0d0f0f0b0e0f0e0c100c0e0c110e0c0f0d0e0d0e0e0e0e0f0c0f0d290d0e0e0f0e280e270f0f0c0e0e0d0e0d0f0f0d0e0d2b0b0f0d290f280c0f0f0d0d0e0e0e0d290d0e0e28100d0d0e0e0e0e0e0d0e0f0b110c0e0e0f0e0c0d0f0f0d0d0f0d0e0d100e0c0e0f0c0e0e0d0e0e0e0e0e12090e0e0f0d0d0e100d0d0c100d0d0f0f0d0e0d0e0f0d0e0e0e0e0c0e0f0d100c0d0f280f0c0e280e0f0d0d10280d0e0e000d050000000000000000000000000000",
+            "temperature30": {
+              "data": "2600e60066360d290e290d110b0e0e100c2a0b0e0e110b280f290d0e0d2a0e0c0e100b2b0d2b0b0e0e270f280e0e0d0f0d2a0d0e0d100d2a0c0f0d0e0c0e0f0d0d0f0f0d0e0e0d0e0d100c0d0f0e0e0f0c0f0d0d0e0e0e0e0e0f0d290f0d0e0f0c2a0d0c0f110a290e290e0d0f0c0e0f0d0d100c0f0d0e2a0b100d100b0e0d100d0e0e0f0e0e0e260e110b290f0d0d0d0f0e0d0d110c0e0f0d0e0d0e0d0c110f0e0a0f100b0e0f0f0d0d0d100c0d0f0d0f0c120b0d0f0d0f0c110c0c0f100b0f0e0c0e0f0d0e0f0c0f110b0d0f0c0e0e0e0d0f0f0d0d0e0d0e290f0d0e0d0f0c0f110c270e0d0e000d050000"
+            },
+            "temperature25": {
+              "data": "2600e40063360f290d27100e0d0d100f0b2a0e0d0d0f0e260e2b0d0f0c290e110b1209290f270f0d0d290f280d0f0d0f0c2b0c0e0e0f0c2a0c0f0f0d0e0d0d100d0d0e0f0c0f0e0e0d100b0f0d110a0e0e0e0e0d0e0f0d100c0e0e2b0c0f0c0e0e290d0e0f0e0c290e280e0e0d100e0e0c0e0e2b0d0e0d2c0a2a0d0e100b0e0d100d0f0c0e270f0f0d2a0d0d0f0f0b0d0f0f0e0d0d0d0f0d110b0e0f0c0f110b0c110b0f0d0d100c0f0e0e15070e0a120c0f0b100e0d0d0e0e0f0f0d0c0f0d0f0d0e0d0f0d12090e0e0d08180a0f0d0e0d110c0e0d2a0e260f270f0e0d0f0d0f0e2c0a0f0f000d0500000000"
+            },
+            "temperature23": {
+              "data": "2600e40065340e2a0e270f0e0e0c0e0f0e280e0e0f0c0d2911250f0d0f270f0c0f0e0d290e280e0f0e290c2a0e0d0d0f0d2b0c0e0e0c11270d100c0e0d0f0d0f0d0e0f0e0b0e0f0d0e0f0b110c100c0d0f0d0e0d0f100c0d0e0e0f290c110b0e0d290f0d0e0d102610270e100b0f0d0d100c0e0e0e0d0f0f0c0f0e0d0d2b0c110b0f0d0e0e0d0e280f0d0d2a0d0e0d0f0d0f0d0e0d100c100b0f0e0c0f100c0e0d0f0d0e0d0f0d0e0e0e0d0d0d2c0d0c0f0f0d100c0e0d110b0d0e0f0d0e0d0f0d0e0e0d100c0e0e0f0e0a120d0c0f0e0e0e0d0f0c2b0d0d0e0e0d290f0e0c0e0e290e0f0e000d0500000000"
+            },
+            "temperature21": {
+              "data": "2600e60065370d280f280d0e0e0d0e0e0e280e0e0f0d0f290c2c0b0d0e2b0c0d0e0e0e290d290f0c0e290d2a0d0d100b10270f0f0d0f0c2a0d0d13090f0e0c100c0e0e0e0d0e0e100b0f0d0f0c0e0e0d0f0d100c0f0d0f0f0e0d0f260e0e0f0e0e280f0c0f0d0d290e2a0c0f0d0d100c110c0e0b0e0f0e100d270e0f0c2b0d0c0e0f0d0f0e0d0e2a0d0e0c290e0f0d0e0f0b0e0e110c0e0d0f0d0e0e0d0f0d0c110d0d0d0e110b0e0e0c0f0f0c100d0d0e0e0e0e0d0e0e0e0d0e0e0f0c120c0b110b0f0e0d0e0e0f0c0e0e0e0e100c0c100d0d0f0d120b280f260f0d0e280f0d0f0e0d2a0d0e0e000d050000"
+            },
+            "temperature20": {
+              "data": "2600ea000700036267350e280e280e100c0e0e0e0d280f0d0f0f0c2a0d290d0f0c280f0e0e0f0d280f270e0e0e290e280d100e0d0d28100b0f0f0d2a0c0d0f0d0e0f0f0b0e0d0e100c0f0e0e0d0f0d0d0e0d0e0f0d110b0e0f0c0e100d0d10260f0c0f100d290d0e0d0e0e2a0c290e0e0d0f0c100c0e100c0e0e0d2810270e0e0e2a0c0e0d0f0d0e0d100c280f0f0c2a0d0e0d0e0e0e0d0f0d0f0d0e0e0e0d0e0e0f0c0e100c0e0c0f0e100b0e0f0e0d0e0e0e0f0c0e0e0e0d0f0d0f0d0e0d0e0d0f0e0e0e0c0f0e0d0e0e0d0e0e0e0d100d0d0e0d0f0d0f0d0e0e0e0d0e0f290c2a0d0e0d0f0e2a0d0d0e000d050000000000000000000000000000"
+            },
+            "temperature19": {
+              "data": "2600e40064360f2c08340614070f0c0d0f280d100c0e0f270e290e0e0d2c0b0d0e0e0f290c2a0e0c08360a260e0f0d0e0d27120a0e0f0e280f0e0c0f0c0e0e13090f0c100c0f0d0f0c0f0d0f0c100d0c0f0d0f0f0d0f0b110d100c290c0e0f0d0e280e0e0d0f0d290d2a0d0f0e0d0e0c0e0e0d150a0f0b100b0f0d280e290d110d100c0c0d100d290e0c0d2b0d0d0c110e0c0e0f0d0f081a080e0b100d0e0d0d0f0d0f0e0e0f0d0d0e0d0e0f0c0e0e0f0b120d0d0c100d0e0e0d0e0d100d0d0d0f0f0d0d0e110a110b0e0d110c0d0e0f0c100c0e0f100a2a0e0e092c0c4806150e2a0d0d0e000d0500000000"
+            },
+            "temperature18": {
+              "data": "2600e600653510260f28100b0e0e0e0e0e280f0c0f0d0f280e270f0d0e290e0d0e0e0e280e290f0d0e280e2a0d0e0e0e0e270e0d0f0e0f270e0f0e0c0f0d100c0d0e0f0b100d0f0c0f0d0f0e0e0c0f0d0e0d0f0e0e0d0e0f0f0c0f27110c0d0e10260f0c0f0e0f270f270f0c0f0f0d0d0f0d0e0f0e0c0e280f0c0f290f280d0e0e0d0f0d0e0d10280d0f0e280e0c100c0e0e0f0d0e0d0e0d100b100e0d0d0f0e0e0d0e0d0e0e0f0c0f0c0f0e0e0d0e0f0d0e0e0c0f0f0d0e0f0d0e0c0f0d100d0e0d0f0b0f0e0f0b100e0d0e0e0d0f0d0e0d0f0c100d0e0d0e290f260f280f0d100b0f280e0d0f000d050000"
+            }
           }
-    ]
+        }
+      ]
+    },
+    {
+      "platform": "IFTTT",
+      "name": "IFTTT",
+      "makerkey": "dmqzQAgVARo-dWhSsJpUYl",
+      "accessories": [
+        {
+          "name": "Accessory 1",
+          "buttons": [
+            {
+              "caption": "Door Open IFTTT",
+              "trigger": "front_door_opened",
+              "stateful": false
+            },
+            {
+              "caption": "Door Close IFTTT",
+              "trigger": "front_door_closed",
+              "stateful": false
+            }
+          ]
+        }
+      ]
+    }
+  ]
 }
-
